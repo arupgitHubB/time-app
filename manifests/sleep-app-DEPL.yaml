@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleep-app
+  labels:
+    app: sleep-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleep-app
+  template:
+    metadata:
+      labels:
+        app: sleep-app
+    spec:
+      containers:
+        - name: sleep-app
+          image: docker.io/arupdockerhub/time-app:v0.0.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          # env:
+          #   - name: sleep_time
+          #     value: "2"
